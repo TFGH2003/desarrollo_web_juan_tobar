@@ -14,3 +14,5 @@ En general los ejemplos están fabricados a mano en el html
 No hay un gran diseño en el css, solo centra y oculta cosas
 
 Se copió código directamente del aux 3
+
+no se hicieron pruebas en distintas resoluciones de pantalla, distintos navegadores funcionaban (Brave, Chrome, Firefox, Edge)

@@ -1,18 +1,24 @@
-Detalles...
+Detalles........
 
-Es todo una sola página, es decir al cambiar la interfaz lo único que pasa es que se pone una nueva encima
+Creo que no se hacen las validaciones en el formulario
 
-Hay solo una imagen repetida entre 1 y 5 veces en el listado de actividades, pulsar una imagen la agranda
-pulsar otra achica las demás y agranda la pulsada
+La forma de saber si el formulario fue aceptado es porque retorna a la portada, si no retorna entonces no fue aceptado
 
-En el formulario no se puede poner más de 1 contacto o 1 foto
+Hay cosas implementadas, como el uso de multiples fotos, que no se pueden usar
 
-Todo el código de selección y validación está en el mismo js
+Hice modificaciones en tarea2.sql, no funcionaban las tildes y hice que comuna fuera un char en vez de un id
 
-En general los ejemplos están fabricados a mano en el html
+El listado de actividades tiene hasta 100 actividades, no todas
 
-No hay un gran diseño en el css, solo centra y oculta cosas
+Los ids no son al azar, son progresivos
 
-Se copió código directamente del aux 3
+region-comuna.sql no fue usado
 
-no se hicieron pruebas en distintas resoluciones de pantalla, distintos navegadores funcionaban (Brave, Chrome, Firefox, Edge)
+Para iniciar la base de datos hay que entrar en mysql con "mysql -u cc5002 -p" con el password "programacionweb"
+luego usar "CREATE DATABASE tarea2; EXIT;" y finalmente "mysql -u cc5002 -p tarea2 < database/tarea2.sql" con la password anterior
+
+Las imágenes no se pueden ampliar en el listado de actividades
+
+Región y contacto no fueron agregados al listado de actividades (Me compliqué)
+
+La base de datos no tiene datos default, por eso está vacía al principio

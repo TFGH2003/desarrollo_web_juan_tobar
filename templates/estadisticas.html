@@ -1,18 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head>
         <link rel="stylesheet" type="text/css" href="./static/Tarea1.css">
         <title>ActividadesFCFM</title>
+        <script src="https://code.highcharts.com/highcharts.js"></script> 
     </head>
     <body>
         <div>
            <h3>Nuestras estadísticas:</h3> 
         </div>
-        <div id="estadisticas">
-            <img src="{{ url_for('static', filename='images/Gráfico_1.PNG') }}" id="grafico">
-            <img src="{{ url_for('static', filename='images/Gráfico_2.PNG') }}" id="grafico">
-            <img src="{{ url_for('static', filename='images/Gráfico_3.PNG') }}" id="grafico">
-            <button type="button" id="portada_stats">Atrás</button>
-        </div>   
+        <div id="container" style="width:100%; height:400px;"></div>
+        <div id="container2" style="width:100%; height:400px;"></div>
+        <div id="container3" style="width:100%; height:400px;"></div>
+        <button type="button" id="portada_stats">Atrás</button>
+        <script src="{{ url_for('static', filename='/js/estadisticas.js') }}"></script>
     </body>
-    <script lang="javascript" src="{{ url_for('static', filename='/js/estadisticas.js') }}"></script>
 </html>

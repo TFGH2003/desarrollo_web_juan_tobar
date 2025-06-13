@@ -111,3 +111,36 @@ img {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000
 }
+.comentarios-container {
+    background-color: #f9f9f9;
+}
+
+.comentarios-list {
+    padding: 15px;
+}
+
+.comentarios-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comentarios-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.comentarios-list h3 {
+    margin-top: 0;
+    color: #333;
+}
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid black;
+  padding: 8px; 
+}

@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head>
         <link rel="stylesheet" type="text/css" href="./static/Tarea1.css">
         <title>ActividadesFCFM</title>
@@ -11,69 +12,67 @@
                 <ul id="val-list"></ul>
             </div>
             <form name="myForm" method="post" enctype="multipart/form-data" id="form">
+                <div class="error-message" style="color: red;"></div>
                 <div>
                     <label for="region">Región</label>
-                    <select type="region" name="region" id="region" required>
+                    <select name="region" id="region">
                         <option value>Seleccione una región</option>
                     </select>
                     <br>
                     <label for="comuna">Comuna</label>
-                    <select type="comuna" name="comuna" id="comuna" required>
+                    <select name="comuna" id="comuna">
                         <option value>Seleccione una comuna</option>
                     </select>
                     <br>
                     <label for="sector">Sector</label>
-                    <input type="sector" name="sector" id="sector" maxlength="100">
+                    <input type="text" name="sector" id="sector">
                     <br>
                 </div>
                 <hr>
                 <div>
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" maxlength="200" required>
+                    <input type="text" name="nombre" id="nombre" maxlength="200">
                     <br>
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" maxlength="100" required>
+                    <input type="text" name="email" id="email" maxlength="100">
                     <br>
                     <label for="numero">Número telefónico</label>
-                    <input type="numero" name="numero" id="numero">
+                    <input type="text" name="numero" id="numero">
                     <br>
                     <label for="contacto">Contactar por</label>
-                    <select type="contacto" name="contactar_nombre" id="contacto">
+                    <select name="contactar_nombre" id="contacto">
                         <option value>Seleccione una red social</option>
                     </select>
                     <br>
-                    <label for="especificar_contacto" style="display: none;">Especificar: </label>
-                    <input type="new_contacto" name="contactar_identificador" id="new_contacto">
-                    <br>
                     <label for="url" style="display: none;">URL: </label>
-                    <input type="new_url" name="new_url" id="new_url">
+                    <input type="url" name="url" id="url">
                     <br>
                 </div>
                 <hr>
                 <div>
                     <label for="inicio">Día y hora de inicio</label>
-                    <input type="datetime-local" name="inicio" id="inicio" required>
+                    <input type="datetime-local" name="inicio" id="inicio">
                     <br>
                     <label for="final">Día y hora de termino</label>
                     <input type="datetime-local" name="final" id="final">
                     <br>
-                    <label for="descripcion">Descripción</label><br>
+                    <label for="desc">Descripción</label><br>
                     <textarea name="desc" id="desc" rows="10" cols="50"></textarea><br>
                     <br>
                     <label for="tema">Tema</label>
-                    <Select type="tema" name="tema" id="tema">
+                    <Select name="tema" id="tema">
                         <option value>Seleccione un tema</option>
                     </select>
-                    <label for="especificar" style="display: none;">Especificar: </label>
-                    <input type="new_tema" name="new_tema" id="new_tema">
+                    <label for="new_tema" style="display: none;">Especificar: </label>
+                    <input type="text" name="new_tema" id="new_tema">
                     <br>
                     <label for="foto">Fotos</label>
                     <input type="file" name="foto" id="foto" multiple accept="image/*">
                 </div>
             <button type="button" id="FormBack">Atrás</button>
-            <input type="submit" value=" > agregar actividad " />
+            <button type="submit">Agregar actividad</button>
             </form>
         </div>
+        <script src="{{ url_for('static', filename='/js/agregar_actividad.js') }}"></script>
     </body>
-    <script lang="javascript" src="{{ url_for('static', filename='/js/agregar_actividad.js') }}"></script>
 </html>

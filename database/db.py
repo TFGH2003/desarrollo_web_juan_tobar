@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Enum
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
-import json
+from datetime import datetime
 
 DB_NAME = "tarea2"
 DB_USERNAME = "cc5002"
@@ -51,6 +51,14 @@ class Archivo(Base):
     nombre_archivo = Column(String(300), nullable=False)
     actividad_id = Column(Integer, ForeignKey("actividad.id"), nullable=False)
 
+class Comentario(Base):
+    __tablename__ = "comentario"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nombre = Column(String(80), nullable=False)
+    texto = Column(String(300), nullable=False)
+    fecha = Column(DateTime, nullable=False, default=datetime.now)
+    actividad_id = Column(Integer, ForeignKey("actividad.id"), nullable=False)
+    
 def insertar_actividad(data, archivos):
     session = SessionLocal()
     try:
@@ -67,44 +75,45 @@ def insertar_actividad(data, archivos):
         session.add(actividad)
         session.flush()
         glosas = data.get('glosas', [])
-        print("!!!! i_tema: ")
-        print(data['temas'])
+        #print("!!!! i_tema: ")
+        #print(data['temas'])
         for i, tema in enumerate(data['temas']):
             glosa_otro = glosas[i] if tema == 'otro' and i < len(glosas) else None
-            print(actividad.id)
-            print(tema)
+            #print(actividad.id)
+            #print(tema)
             if glosa_otro is None:
                 wawar = "wawa"
             else:
                 wawar = glosa_otro
-            print("1")    
-            print(wawar)
+            #print("1")    
+            #print(wawar)
             session.add(ActividadTema(
                 actividad_id=actividad.id,
                 tema=tema,
                 glosa_otro=wawar
             ))
-            print("2")
-        print("!!!! i_contactos: ")
-        print(data['contactos'])
-        for contacto in data['contactos']:
-            wawar=contacto['identificador']
-            if not contacto['identificador'].strip():
-                wawar="wawa"
-            print(actividad.id)
-            print(contacto['nombre'])
-            print(wawar)
-            session.add(ContactarPor(
-                actividad_id=actividad.id,
-                nombre=contacto['nombre'],
-                identificador=wawar
-            ))
-        print("!!!! i_archivos: ")
-        print(archivos)
+            #print("2")
+        #print("!!!! i_contactos: ")
+        #print(data['contactos'])
+        if 'contactos' in data and data['contactos']:
+            for contacto in data['contactos']:
+                wawar=contacto['identificador']
+                if not contacto['identificador'].strip():
+                    wawar="wawa"
+                #print(actividad.id)
+                #print(contacto['nombre'])
+                #print(wawar)
+                session.add(ContactarPor(
+                    actividad_id=actividad.id,
+                    nombre=contacto['nombre'],
+                    identificador=wawar
+                ))
+        #print("!!!! i_archivos: ")
+        #print(archivos)
         for archivo in archivos:
-            print(actividad.id)
-            print(archivo['filename'])
-            print(archivo['filepath'])
+            #print(actividad.id)
+            #print(archivo['filename'])
+            #print(archivo['filepath'])
             session.add(Archivo(
                 actividad_id=actividad.id,
                 nombre_archivo=archivo['filename'],
@@ -151,6 +160,14 @@ def obtener_actividades(limit, offset=0):
                 "contactos": contactos_list,
                 "archivos": archivos_list
             }
+            comentarios = session.query(Comentario).filter(
+                Comentario.actividad_id == actividad.id
+            ).all()
+            actividad_json["comentarios"] = [{
+                "nombre": c.nombre,
+                "texto": c.texto,
+                "fecha": c.fecha.strftime('%Y-%m-%d %H:%M:%S')
+            } for c in comentarios]
             actividades_data.append(actividad_json)
         
         return actividades_data

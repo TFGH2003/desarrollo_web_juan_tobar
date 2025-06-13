@@ -276,3 +276,37 @@ window.onload = () => {
     changeArguments();
     changeContacto();
   };
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formulario= new FormData(form);
+    const errores = form.querySelector('.error-message');
+    errores.textContent = '';
+    
+    fetch('/validar_actividad', {
+        method: 'POST',
+        body: formulario
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(errorData => {
+                throw new Error(errorData.errors?.join(', ') || 'Error desconocido');
+            });
+        }
+        return response.json();
+    })
+    .then(result => {
+        if (result.status != 'ok') {
+            errores.textContent = result.errors.join(', ');
+        } else {
+            form.reset();
+            alert('¡Formulario enviado con éxito!');
+        }
+    })
+    .catch(error => {
+        errores.textContent = error.message;
+        console.error('Error:', error);
+    });
+});
+
+document.getElementById('url-label').style.display = 'inline';

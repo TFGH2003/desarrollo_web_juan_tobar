@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head>
         <link rel="stylesheet" type="text/css" href="./static/Tarea1.css">
         <title>ActividadesFCFM</title>
@@ -14,7 +15,7 @@
         </div>
         {% if actividades %}
             <h2>Listado de actividades</h2>
-            <table border=1>
+            <table>
             <tr>
                 <td><b>Inicio</b></td>
                 <td><b>Termino</b></td>
@@ -43,6 +44,6 @@
             {% endfor %}
             </table>
         {% endif %}
+        <script src="{{ url_for('static', filename='/js/portada.js') }}"></script>
     </body>
-    <script lang="javascript" src="{{ url_for('static', filename='/js/portada.js') }}"></script>
 </html>

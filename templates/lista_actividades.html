@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head>
         <link rel="stylesheet" type="text/css" href="./static/Tarea1.css">
         <title>ActividadesFCFM</title>
@@ -9,7 +10,7 @@
         </div>
         {% if actividades %}
             <h1>Listado de actividades</h1>
-            <table border=1>
+            <table>
             <tr>
                 <td><b>Comuna</b></td>
                 <td><b>Sector</b></td>
@@ -21,7 +22,9 @@
                 <td><b>Tema</b></td>
                 <td><b>Descripcion</b></td>
                 <td><b>Foto</b></td>
+                <td><b>Acciones</b></td> 
             </tr>
+            
             {% for a in actividades %}
             <tr>
                 <td>{{ a.comuna }}</td>
@@ -42,6 +45,33 @@
                         <img src="{{ foto.ruta }}" alt="{{ foto.nombre }}" width="100">
                     {% endfor %}
                 </td>
+                <td>
+                    <button class="btn-comentar" data-actividad-id="{{ a.id }}">Comentar</button>
+                    <button class="btn-ver-comentarios" data-actividad-id="{{ a.id }}">Ver comentarios</button>
+                </td>
+            </tr>
+            <tr class="form-comentario" style="display: none;" data-actividad-id="{{ a.id }}">
+                <td colspan="11"> 
+                    <form class="form-comentario-actividad" data-actividad-id="{{ a.id }}">
+                        <input type="hidden" name="actividad_id" value="{{ a.id }}">
+                        <div>
+                            <label>Nombre:</label>
+                            <input type="text" name="nombre" minlength="3" maxlength="80" required>
+                        </div>
+                        <div>
+                            <label>Comentario:</label>
+                            <textarea name="texto" rows="4" cols="50" minlength="5" required></textarea>
+                        </div>
+                        <div class="error-message" style="color: red;"></div>
+                        <button type="submit">Agregar comentario</button>
+                    </form>
+                </td>
+            </tr>
+            <tr class="comentarios-container" style="display: none;" data-actividad-id="{{ a.id }}">
+                <td colspan="11">
+                    <div class="comentarios-list" id="comentarios-{{ a.id }}">
+                    </div>
+                </td>
             </tr>
             {% endfor %}
             </table>
@@ -49,6 +79,7 @@
         <div>
             <button type="button" id="BackButt">Volver</button>
         </div>
+        <script src="{{ url_for('static', filename='/js/lista_actividades.js') }}"></script>
+        <script src="{{ url_for('static', filename='/js/comentarios.js') }}"></script>
     </body>
-    <script lang="javascript" src="{{ url_for('static', filename='/js/lista_actividades.js') }}"></script>
 </html>

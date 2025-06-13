@@ -1,10 +1,12 @@
-Detalles........
+Detalles..
 
 No se pueden insertar multiples fotos o multiples contactos.
 
 Insertar otro tema no funciona pero si funciona su validación, en caso de seleccionar otro tema simplemente se guardará como otro
 
 W3c indica un warning de heading vacío, es porque ahí van los errores.
+
+Para agregar un comentario o ver los comentarios de una actividad hay que ir al listado de actividades, en el apartado "acciones" están los botones para añadir un comentario o ver los comentarios de la actividad, al presionar de nuevo el botón se ocultan.
 
 Los comentarios no se actualizan instantaneamente, si está activado "Ver comentarios" y se agrega uno nuevo, hay que desactivar y activar nuevamente "Ver comentarios" para verlo
 

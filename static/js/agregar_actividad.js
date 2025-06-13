@@ -277,7 +277,7 @@ window.onload = () => {
     changeContacto();
   };
 
-form.addEventListener('submit', (e) => {
+function formSubmit(e){
     e.preventDefault();
     const formulario= new FormData(form);
     const errores = form.querySelector('.error-message');
@@ -300,13 +300,14 @@ form.addEventListener('submit', (e) => {
             errores.textContent = result.errors.join(', ');
         } else {
             form.reset();
-            alert('¡Formulario enviado con éxito!');
+            alert('Actividad agregada');
+            window.location.href = "/";
         }
     })
     .catch(error => {
         errores.textContent = error.message;
         console.error('Error:', error);
     });
-});
-
+}
+form.addEventListener('submit', formSubmit)
 document.getElementById('url-label').style.display = 'inline';

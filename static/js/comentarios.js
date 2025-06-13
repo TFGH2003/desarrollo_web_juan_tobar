@@ -15,6 +15,7 @@ function comButtFunc(e){
 
 function formCAFunc(e){
     e.preventDefault();
+    const form = e.currentTarget
     const formulario = new FormData(form);
     const errores = form.querySelector('.error-message');       
     fetch('/agregar_comentario', {

@@ -17,4 +17,6 @@ errores implementados pero al hacer uso de un selector en vez de un input no deb
 No se hizo uso de links con css's prehechos (Me gusta como se ve sin diseño)
 
 Para iniciar la aplicación primero hay que descargar MySql y agregarlo al path, luego hay que crear al usuario cc5002 si no está creado, finalmente
-hay que crear la database tarea2 y simplemente precionar play desde uno de los archivos .java de la tarea.
+hay que crear la database tarea2 y simplemente precionar play desde uno de los archivos .java de la tarea, cabe destacar que hay que crear un perfil
+con java en vscode para correr el código. Una vez presionado play hay que ir al navegador y usar el link http://localhost:8080/actividades para 
+iniciar la página.

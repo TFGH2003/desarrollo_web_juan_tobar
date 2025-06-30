@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividades</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Lista de Actividades</h1>
+        <div class="text-end mb-3">
+            <form th:action="@{/actividades/rellenar}" method="post">
+                <button type="submit" class="btn btn-primary">Añadir actividad predeterminada</button>
+            </form>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha Inicio</th>
+                    <th>Sector</th>
+                    <th>Nombre</th>
+                    <th>Tema</th>
+                    <th>Nota Promedio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="actividad : ${actividades}">
+                    <td th:text="${actividad.id}"></td>
+                    <td th:text="${actividad.fechaInicio}"></td>
+                    <td th:text="${actividad.sector}"></td>
+                    <td th:text="${actividad.nombre}"></td>
+                    <td th:text="${actividad.tema}"></td>
+                    <td class="promedio-cell" 
+                        th:data-actividad-id="${actividad.id}"
+                        th:text="${#maps.containsKey(promediosNotas, actividad.id)} ? 
+                               ${#numbers.formatDecimal(promediosNotas.get(actividad.id), 1, 2)} : '-'">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary evaluar-btn" 
+                                th:data-actividad-id="${actividad.id}">Evaluar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="notaPopup" class="nota-popup">
+        <h4>Ingresar Nota</h4>
+        <select id="notaInput" class="form-control mb-2">
+            <option value="" disabled selected>Seleccione una nota</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+        <button id="guardarNotaBtn" class="btn btn-success">Añadir</button>
+        <button id="cancelarNotaBtn" class="btn btn-secondary">Cancelar</button>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

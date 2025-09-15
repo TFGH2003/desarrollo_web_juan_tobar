@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" type="text/css" href="./static/Tarea1.css">
+        <title>ActividadesFCFM</title>
+    </head>
+    <body>
+        <div>
+           <h1>Bienvenidos a ActividadesFCFM!</h1> 
+        </div>
+        <div class="menu">
+            <button type="button" id="AgAct">Agregar una actividad</button>
+            <button type="button" id="ActList">Listado de actividades</button>
+            <button type="button" id="Stats">Estadísticas</button>
+        </div>
+        {% if actividades %}
+            <h2>Listado de actividades</h2>
+            <table>
+            <tr>
+                <td><b>Inicio</b></td>
+                <td><b>Termino</b></td>
+                <td><b>Comuna</b></td>
+                <td><b>Sector</b></td>
+                <td><b>Tema</b></td>
+                <td><b>Foto</b></td>
+            </tr>
+            {% for a in actividades %}
+            <tr>
+                <td>{{ a.dia_hora_inicio }}</td>
+                <td>{{ a.dia_hora_termino }}</td>
+                <td>{{ a.comuna }}</td>
+                <td>{{ a.sector}}</td>
+                <td>
+                    {% for tema in a.temas %}
+                        {{ tema.tema }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for foto in a.archivos %}
+                        <img src="{{ foto.ruta }}" alt="{{ foto.nombre }}" width="100">
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+        <script src="{{ url_for('static', filename='/js/portada.js') }}"></script>
+    </body>
+</html>
